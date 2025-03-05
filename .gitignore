@@ -1,8 +1,14 @@
+# Ignore logs and temporary files
 __pycache__/
 *.pyc
 .vscode/
 .env
 .venv/
+*.log
+*.pyo
+*.swp
+.DS_Store
+
 
 # Ignore all CSV files
 *.csv
@@ -10,6 +16,15 @@ __pycache__/
 # Ignore Airflow database and logs
 airflow/airflow.db
 airflow/logs/
+airflow/plugins/
+airflow/dags/__pycache__/
+
+# Ignore Airflow configuration (can be reconfigured locally)
+airflow/airflow.cfg
 airflow/webserver_config.py
 
 .DS_Store
+
+# Ignore Docker build files
+*.env
+docker-compose.override.yml
