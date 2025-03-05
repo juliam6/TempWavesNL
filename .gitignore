@@ -1,6 +1,15 @@
 __pycache__/
+*.pyc
 .vscode/
 .env
+.venv/
 
 # Ignore all CSV files
 *.csv
+
+# Ignore Airflow database and logs
+airflow/airflow.db
+airflow/logs/
+airflow/webserver_config.py
+
+.DS_Store
