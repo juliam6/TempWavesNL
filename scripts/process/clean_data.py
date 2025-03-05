@@ -2,8 +2,8 @@ import pandas as pd
 import os
 
 # Define source and target file paths
-RAW_CSV = "data/raw/raw_meteo_data.csv"
-CLEAN_CSV = "data/processed/clean_meteo_data.csv"
+RAW_CSV = "/app/data/raw/raw_meteo_data.csv"
+CLEAN_CSV = "/app/data/processed/clean_meteo_data.csv"
 
 # Ensure target path exists
 os.makedirs(os.path.dirname(CLEAN_CSV), exist_ok=True)

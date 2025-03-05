@@ -2,12 +2,12 @@ import pandas as pd
 import os
 
 # Define source path
-CLEAN_CSV = "data/processed/clean_meteo_data.csv"
+CLEAN_CSV = "/app/data/processed/clean_meteo_data.csv"
 
 # Define target paths
-HEATWAVES_CSV = "data/results/heatwaves.csv"
-COLDWAVES_CSV = "data/results/coldwaves.csv"
-WAVES_TIMESERIES_CSV = "data/results/waves_timeseries.csv"
+HEATWAVES_CSV = "/app/data/results/heatwaves.csv"
+COLDWAVES_CSV = "/app/data/results/coldwaves.csv"
+WAVES_TIMESERIES_CSV = "/app/data/results/waves_timeseries.csv"
 
 # Ensure target path exists
 os.makedirs(os.path.dirname(HEATWAVES_CSV), exist_ok=True)

@@ -4,18 +4,16 @@ import tempfile
 import zipfile
 import pandas as pd
 
-DATA_PATH = "/opt/airflow/data/"
-RAW_FILE = os.path.join(DATA_PATH, "temperature_data.csv")
-
-
 KNMI_URL = "https://cdn.knmi.nl/knmi/map/page/klimatologie/gegevens/daggegevens/etmgeg_260.zip"
 TEMP_DIR = os.path.join(tempfile.gettempdir(), "knmi")
 ZIP_FILE = os.path.join(TEMP_DIR, "etmgeg_260.zip")
 EXTRACT_DIR = os.path.join(TEMP_DIR, "etmgeg_260")
 EXTRACT_TXT = os.path.join(EXTRACT_DIR, "etmgeg_260.txt")
-EXTRACT_CSV = "data/raw/raw_meteo_data.csv"
+EXTRACT_CSV = "/app/data/raw/raw_meteo_data.csv"
 
 os.makedirs(TEMP_DIR, exist_ok=True)
+os.makedirs(EXTRACT_DIR, exist_ok=True)
+os.makedirs(os.path.dirname(EXTRACT_CSV), exist_ok=True)
 
 def get_daily_zip_file():
     print("Downloading all available data from the De Bilt weather station...")

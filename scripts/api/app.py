@@ -5,7 +5,7 @@ import os
 app = FastAPI()
 
 # Define file paths
-RESULTS_DIR = os.path.join(os.path.dirname(__file__), "../../data/results")
+RESULTS_DIR = "/app/data/results"
 HEATWAVES_FILE = os.path.join(RESULTS_DIR, "heatwaves.csv")
 COLDWAVES_FILE = os.path.join(RESULTS_DIR, "coldwaves.csv")
 WAVES_TIMESERIES_FILE = os.path.join(RESULTS_DIR, "waves_timeseries.csv")
