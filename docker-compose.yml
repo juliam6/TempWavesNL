@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:13
+    image: postgres:15
     container_name: airflow_postgres
     restart: always
     environment:
@@ -11,7 +11,9 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   airflow-webserver:
-    image: apache/airflow:2.5.0
+    build:
+      context: .
+      dockerfile: Dockerfile.airflow
     container_name: airflow_webserver
     restart: always
     depends_on:
@@ -19,6 +21,7 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      
     volumes:
       - ./dags:/opt/airflow/dags
       - ./airflow/logs:/opt/airflow/logs
@@ -30,7 +33,9 @@ services:
     command: ["webserver"]
 
   airflow-scheduler:
-    image: apache/airflow:2.5.0
+    build:
+      context: .
+      dockerfile: Dockerfile.airflow
     container_name: airflow_scheduler
     restart: always
     depends_on:
@@ -47,7 +52,9 @@ services:
     command: ["scheduler"]
 
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.api
     container_name: tempwaves_api
     restart: always
     ports:

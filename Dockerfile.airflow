@@ -1,0 +1,22 @@
+# Dockerfile.airflow
+FROM apache/airflow:2.10.5-python3.11
+
+USER root
+
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y gcc python3-dev default-jdk && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME for Spark
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+# Switch back to airflow user
+USER airflow
+
+# Install PySpark and Spark Airflow provider
+RUN pip install --no-cache-dir apache-airflow-providers-apache-spark pyspark
+
+# Set Airflow entrypoint
+ENTRYPOINT ["airflow"]
