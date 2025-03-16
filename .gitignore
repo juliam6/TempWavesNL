@@ -12,6 +12,7 @@ __pycache__/
 
 # Ignore all CSV files
 *.csv
+*.crc
 
 # Ignore Airflow database and logs
 airflow/airflow.db

@@ -3,6 +3,7 @@ import requests
 import tempfile
 import zipfile
 from pyspark.sql import SparkSession
+import time
 
 KNMI_URL = "https://cdn.knmi.nl/knmi/map/page/klimatologie/gegevens/daggegevens/etmgeg_260.zip"
 
@@ -12,8 +13,9 @@ ZIP_FILE = os.path.join(TEMP_DIR, "etmgeg_260.zip")
 EXTRACT_DIR = os.path.join(TEMP_DIR, "etmgeg_260")
 EXTRACT_TXT = os.path.join(EXTRACT_DIR, "etmgeg_260.txt")
 
+# Define base directory (two levels up)
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 # Target directory
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 EXTRACT_CSV = os.path.join(BASE_DIR, "data/raw/raw_meteo_data.csv")
 
 os.makedirs(TEMP_DIR, exist_ok=True)
@@ -72,7 +74,7 @@ def convert_txt_to_csv():
             .toDF(*headers)
 
     # Return latest entry for visual inspection
-    spark.createDataFrame(df.tail(1)).show()
+    # spark.createDataFrame(df.tail(1)).show()
 
     # Save as CSV
     df.write.mode("overwrite").option("header", "true").csv(EXTRACT_CSV)
